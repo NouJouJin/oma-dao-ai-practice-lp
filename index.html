@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMA DAO×AI実践講座 第2回 | Metagri研究所</title>
+    <meta name="description" content="大妻マネジメントアカデミー（OMA）第2回講義 - AI×web3で地域活性化企画を創る">
+    <style>
+        :root {
+            --primary-green: #2d5016;
+            --light-green: #4a7c2c;
+            --accent-green: #6ba83e;
+            --tech-blue: #0066cc;
+            --light-blue: #e6f2ff;
+            --dark-gray: #333;
+            --light-gray: #f5f5f5;
+            --border-gray: #ddd;
+            --white: #ffffff;
+            --warning-yellow: #fff3cd;
+            --warning-border: #ffc107;
+            --success-green: #d4edda;
+            --success-border: #28a745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--dark-gray);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* パスワード認証画面 */
+        #auth-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .auth-logo {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .auth-card h1 {
+            color: var(--primary-green);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .auth-card p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .auth-form input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border-gray);
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+
+        .auth-form input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+        }
+
+        .auth-form button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--accent-green) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .auth-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(45, 80, 22, 0.3);
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* メインコンテンツ */
+        #main-content {
+            display: none;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(45, 80, 22, 0.2);
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #fff3cd;
+        }
+
+        .header .date {
+            font-size: 18px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .header .divider {
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .header .objectives {
+            text-align: left;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+
+        .header .objectives h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .header .objectives ul {
+            list-style: none;
+        }
+
+        .header .objectives li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .header .objectives li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+
+        .header .tagline {
+            margin-top: 20px;
+            font-style: italic;
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        .section {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .section h2 {
+            color: var(--primary-green);
+            font-size: 28px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--accent-green);
+        }
+
+        .section h3 {
+            color: var(--light-green);
+            font-size: 22px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .section h4 {
+            color: var(--dark-gray);
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: var(--light-gray);
+            border: 2px solid var(--border-gray);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .card-highlight {
+            background: var(--light-blue);
+            border-color: var(--tech-blue);
+        }
+
+        .card-success {
+            background: var(--success-green);
+            border-color: var(--success-border);
+        }
+
+        .card-warning {
+            background: var(--warning-yellow);
+            border-color: var(--warning-border);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tech-item {
+            background: var(--light-gray);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .tech-item strong {
+            color: var(--primary-green);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--tech-blue);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .example-box h4 {
+            color: var(--tech-blue);
+            margin-top: 0;
+        }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .checklist li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+
+        .crosslist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .crosslist li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .crosslist li::before {
+            content: "❌";
+            position: absolute;
+            left: 0;
+        }
+
+        .timeline {
+            border-left: 3px solid var(--accent-green);
+            padding-left: 30px;
+            margin: 20px 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: "⏰";
+            position: absolute;
+            left: -43px;
+            background: var(--white);
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--tech-blue) 0%, #0052a3 100%);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 10px 0;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+        }
+
+        .button-large {
+            font-size: 18px;
+            padding: 20px 40px;
+            display: block;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        .ai-tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .ai-tool {
+            background: var(--white);
+            border: 2px solid var(--tech-blue);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .ai-tool:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.2);
+        }
+
+        .ai-tool a {
+            color: var(--tech-blue);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .prompt-box {
+            background: #f0f8ff;
+            border: 2px solid var(--tech-blue);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .prompt-box h4 {
+            color: var(--tech-blue);
+            margin-top: 0;
+        }
+
+        .footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer h3 {
+            color: var(--accent-green);
+            margin-bottom: 20px;
+        }
+
+        .footer a {
+            color: var(--accent-green);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background: var(--light-green);
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-green);
+        }
+
+        .message-box {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        table th {
+            background: var(--primary-green);
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        table tr:hover {
+            background: var(--light-gray);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .header .subtitle {
+                font-size: 18px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section h2 {
+                font-size: 22px;
+            }
+
+            .tech-grid,
+            .ai-tools {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .logout-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .logout-button:hover {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+    </style>
+</head>
+<body>
+    <!-- 認証画面 -->
+    <div id="auth-screen">
+        <div class="auth-card">
+            <div class="auth-logo">🌾🤖</div>
+            <h1>OMA DAO×AI実践講座 第2回</h1>
+            <p>受講者専用ページです。<br>配布されたパスワードを入力してください。</p>
+            <form class="auth-form" id="auth-form">
+                <input
+                    type="password"
+                    id="password-input"
+                    placeholder="パスワードを入力"
+                    autocomplete="off"
+                >
+                <button type="submit">ログイン</button>
+                <div class="error-message" id="error-message">
+                    パスワードが正しくありません
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div id="main-content">
+        <button class="logout-button" id="logout-button">ログアウト</button>
+
+        <!-- ヘッダー -->
+        <div class="header">
+            <h1>大妻マネジメントアカデミー（OMA）</h1>
+            <div class="subtitle">第2回講義：AI×web3で地域活性化企画を創る</div>
+            <div class="date">📅 日時：2025年11月15日（土）5限※6限の一部</div>
+
+            <div class="divider"></div>
+
+            <div class="objectives">
+                <h3>本講義の目的</h3>
+                <ul>
+                    <li>AI×web3の掛け合わせによる新たな可能性を理解する</li>
+                    <li>実際にAIツールを使って地域活性化DAO企画を創る</li>
+                    <li>DAO設計書を完成させ、発表・投票を通じて実践力を養う</li>
+                </ul>
+            </div>
+
+            <div class="tagline">「学び手から共創者へ。あなたの提案が、地域を変える」</div>
+        </div>
+
+        <!-- 第1回の振り返り -->
+        <div class="section">
+            <h2>📚 第1回講義の振り返り（5分で復習）</h2>
+
+            <h3>web3の本質</h3>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <strong>分散型</strong>
+                    中央管理者がいない
+                </div>
+                <div class="tech-item">
+                    <strong>透明性</strong>
+                    すべての記録が公開
+                </div>
+                <div class="tech-item">
+                    <strong>所有権</strong>
+                    ユーザーがデータを所有
+                </div>
+            </div>
+
+            <h3>主要技術</h3>
+            <div class="card">
+                <p><strong>🔗 ブロックチェーン</strong><br>改ざん防止、透明性の確保</p>
+                <p><strong>💎 NFT</strong><br>唯一無二のデジタル証明書</p>
+                <p><strong>🪙 FT</strong><br>地域通貨やポイントとして活用</p>
+                <p><strong>🏛️ DAO</strong><br>みんなで意思決定する組織</p>
+            </div>
+
+            <h3>成功事例の共通点</h3>
+            <ul class="checklist">
+                <li><strong>石高プロジェクト（福島）</strong>：リスク共有の設計</li>
+                <li><strong>八千代町（茨城）</strong>：1,000円という心理的ハードル極小化</li>
+                <li><strong>ぐんま山育DAO</strong>：専門家参画 × 県外50%の関係人口</li>
+            </ul>
+
+            <h3>失敗事例から学ぶ</h3>
+            <ul class="crosslist">
+                <li><strong>いちご物語</strong>：NFTは手段、事業本質が大事</li>
+                <li><strong>お米3年分NFT</strong>：ターゲット曖昧、コミュニティ不在</li>
+            </ul>
+
+            <div class="message-box">
+                「NFTは手段であり、目的ではない」<br>
+                「持続可能性とコミュニティ形成が成功の鍵」
+            </div>
+        </div>
+
+        <!-- 今日のゴール -->
+        <div class="section">
+            <h2>🎯 今日のゴール</h2>
+
+            <div class="card card-highlight">
+                <h3 style="margin-top: 0;">AI×web3で実現する地域活性化DAO企画書を<br>実際に作成し、発表・投票までを体験する</h3>
+            </div>
+
+            <h3>本日の流れ</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>15分</strong>：前回振り返り・宿題確認<br>
+                    <small>参加者の準備状況確認（5分）</small>
+                    <ul style="margin-top: 10px;">
+                        <li>AIツールのアカウント作成状況（挙手確認）</li>
+                        <li>考えてきた地域・特産品の共有（数名に聞く）</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <strong>10分</strong>：生成AIのトレンドと進化
+                </div>
+                <div class="timeline-item">
+                    <strong>15分</strong>：ワークショップ説明<br>
+                    <small>具体的な企画作成の手順や具体事例の紹介</small>
+                </div>
+                <div class="timeline-item">
+                    <strong>40分</strong>：AI活用で企画書作成
+                </div>
+                <div class="timeline-item">
+                    <strong>50分</strong>：発表・投票・講評（一人5分程度）
+                </div>
+                <div class="timeline-item">
+                    <strong>10分</strong>：まとめ
+                </div>
+            </div>
+        </div>
+
+        <!-- 参考事例 -->
+        <div class="section">
+            <h2>📖 参考にしてほしい2つの事例</h2>
+
+            <div class="example-box">
+                <h4>【事例A】Biwako DAO（環境保全型）</h4>
+                <p><strong>テーマ</strong>：琵琶湖の水をきれいにする活動</p>
+
+                <ul class="checklist" style="margin-top: 15px;">
+                    <li>県外在住者も平等に参加・貢献できる</li>
+                    <li>FTトークン（BWT）で活動を可視化</li>
+                    <li>NFT3レベル設計（Supporter → Contributor → Guardian）</li>
+                    <li>企業スポンサー・自治体連携で収益化</li>
+                </ul>
+
+                <div class="card card-success" style="margin-top: 15px;">
+                    <strong>💡 ポイント：</strong><br>
+                    全国の「琵琶湖を愛する人」を巻き込める<br>
+                    貢献度が可視化され、公平に報酬分配
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>【事例B】川上牧場（教育・体験型）</h4>
+                <p><strong>テーマ</strong>：酪農をオンライン学習×現地体験で学ぶ</p>
+
+                <ul class="checklist" style="margin-top: 15px;">
+                    <li>月額サブスク制（1,980円〜）</li>
+                    <li>投機性完全排除（換金不可・譲渡不可）</li>
+                    <li>SBT（譲渡不可バッジ）で学習履歴を証明</li>
+                    <li>投票でカリキュラムを決める</li>
+                    <li>会員140名で黒字化、継続率70%目標</li>
+                </ul>
+
+                <div class="card card-success" style="margin-top: 15px;">
+                    <strong>💡 ポイント：</strong><br>
+                    「学び手から共創者へ」<br>
+                    学習履歴がSBTに刻まれ、就活で活用可能<br>
+                    DAOは必ずしも「稼ぐ」ためではない
+                </div>
+            </div>
+
+            <div class="message-box">
+                あなたの地域に合うのは、どちらのタイプ？<br>
+                それとも、全く新しいタイプ？
+            </div>
+        </div>
+
+        <!-- 実践ワークショップ -->
+        <div class="section">
+            <h2>🛠️ 実践ワークショップ：DAO企画書を作ろう</h2>
+
+            <h3>【ステップ1】Google Docsテンプレートを開く</h3>
+            <div class="card card-highlight">
+                <h4 style="margin-top: 0;">📝 DAO設計書テンプレート</h4>
+                <a href="#" class="button button-large" onclick="alert('Google Docsのリンクをここに設定してください'); return false;">
+                    👉 Google Docsテンプレートを開く
+                </a>
+                <p style="text-align: center; margin-top: 10px;">
+                    ※クリックして、自分用にコピーしてね
+                </p>
+            </div>
+
+            <h3>【ステップ2】AIツールを使って各項目を埋める</h3>
+            <div class="card">
+                <h4>推奨AIツール（いずれか1つ）</h4>
+                <div class="ai-tools">
+                    <div class="ai-tool">
+                        <div style="font-size: 32px; margin-bottom: 10px;">🤖</div>
+                        <a href="https://chat.openai.com/" target="_blank">ChatGPT</a>
+                    </div>
+                    <div class="ai-tool">
+                        <div style="font-size: 32px; margin-bottom: 10px;">🤖</div>
+                        <a href="https://claude.ai/" target="_blank">Claude</a>
+                    </div>
+                    <div class="ai-tool">
+                        <div style="font-size: 32px; margin-bottom: 10px;">🤖</div>
+                        <a href="https://gemini.google.com/" target="_blank">Gemini</a>
+                    </div>
+                    <div class="ai-tool">
+                        <div style="font-size: 32px; margin-bottom: 10px;">🤖</div>
+                        <a href="https://copilot.microsoft.com/" target="_blank">Copilot</a>
+                    </div>
+                </div>
+            </div>
+
+            <h3>【ステップ3】下記のプロンプトをコピペして使おう</h3>
+
+            <div class="prompt-box">
+                <h4>🤖 基本プロンプト（コピペして使ってね）</h4>
+                <div class="code-block">あなたは地方創生DAOの企画コンサルタントです。
+以下の条件で、DAO設計書を作成してください。
+
+【地域】〇〇県△△市
+【特産品・テーマ】□□
+【解決したい課題】（事前に調べた内容を貼り付け）
+【ターゲット】20-40代の都市部在住者
+【DAOのタイプ】
+ A: 環境保全型（例：Biwako DAO）
+ B: 教育・体験型（例：川上牧場 Learning DAO）
+
+以下の項目をすべて埋めてください：
+
+■基本情報
+・テーマ案
+・DAOの名称
+・キャッチコピー
+・対象地域
+・解決したい地域課題（3つ以上）
+
+■ターゲット設定
+・メインターゲット
+・サブターゲット
+
+■トークノミクス設計
+・トークンの基本方針（投機型 or 投機性排除型）
+・FTの設計（名称・獲得方法5つ・利用方法3つ）
+・NFT/SBTの設計（3レベル）
+
+■コミュニティ設計
+・参加条件（無料/単発/サブスク）
+・オンライン活動内容（3つ以上）
+・オフライン活動内容（3つ以上）
+・コミュニティツール
+
+■ガバナンス
+・投票権の設定
+・投票対象事項（3つ以上）
+・運営メンバーの役割（3つ以上）
+
+■マネタイズ戦略
+・ビジネスモデルの選択（単発型/サブスク型）
+・収益源（3つ以上）
+・資金の使い道（%で配分）
+・収益分配方法
+
+■DAOだからこその意義
+・中央集権型組織との違い（3つ以上）
+・DAOだからこそ実現できること（3つ以上）
+
+特に「DAOだからこその意義」を明確に説明してください。</div>
+            </div>
+
+            <div class="prompt-box">
+                <h4>🤖 段階的に質問する場合</h4>
+
+                <h4 style="margin-top: 20px;">■ステップ1：地域分析</h4>
+                <div class="code-block">「〇〇県△△市の特産品□□について、強み・弱み・機会・脅威（SWOT分析）を教えてください。また、この地域が抱える3つの主要課題を教えてください。」</div>
+
+                <h4 style="margin-top: 20px;">■ステップ2：ターゲット設定</h4>
+                <div class="code-block">「上記の分析を踏まえて、DAOに参加してほしいメインターゲットとサブターゲットを提案してください。」</div>
+
+                <h4 style="margin-top: 20px;">■ステップ3：トークノミクス設計</h4>
+                <div class="code-block">「このDAOで使うFTとNFTの設計を提案してください。FTの獲得方法を5つ、利用方法を3つ、NFTは3レベルで設計してください。」</div>
+
+                <h4 style="margin-top: 20px;">■ステップ4：DAOの意義</h4>
+                <div class="code-block">「このプロジェクトを、従来の中央集権型組織（NPO、自治体の事業、農協など）ではなく、DAOで実施する意義を3つ説明してください。」</div>
+            </div>
+
+            <div class="card card-warning">
+                <h4 style="margin-top: 0;">💡 Tips</h4>
+                <ul>
+                    <li>一度に全部質問しても、段階的に質問してもOK</li>
+                    <li>AIの回答に対して「もっと具体的に」「数字を入れて」など追加質問してみよう</li>
+                    <li>複数のAIツールを比較して使ってもOK</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 発表・投票 -->
+        <div class="section">
+            <h2>🎤 発表・投票の流れ</h2>
+
+            <div class="card">
+                <h3 style="margin-top: 0;">発表時間</h3>
+                <p><strong>⏰ 1人3分程度</strong></p>
+            </div>
+
+            <div class="card">
+                <h3 style="margin-top: 0;">発表内容</h3>
+                <ol style="padding-left: 20px;">
+                    <li>企画タイトル</li>
+                    <li>対象地域・特産品</li>
+                    <li>ターゲットと解決したい課題</li>
+                    <li>web3技術の活用方法（FT/NFT）</li>
+                    <li>DAOだからこその意義</li>
+                    <li>期待される効果</li>
+                </ol>
+            </div>
+
+            <div class="card card-highlight">
+                <h3 style="margin-top: 0;">NFT投票</h3>
+                <p>全員にMetagri研究所の投票用NFTを配布します。<br>
+                最も良いと思った企画に投票してください。</p>
+            </div>
+
+            <div class="card">
+                <h3 style="margin-top: 0;">投票基準</h3>
+                <ul class="checklist">
+                    <li>実現可能性が高い</li>
+                    <li>ターゲットが明確</li>
+                    <li>web3技術の活用が適切</li>
+                    <li>自分が参加したいと思える</li>
+                </ul>
+            </div>
+
+            <div class="message-box">
+                リアルタイムで結果発表＆講評！
+            </div>
+        </div>
+
+        <!-- フッター -->
+        <div class="footer">
+            <h3>📚 さらに学びたい人へ</h3>
+
+            <div style="margin: 30px 0;">
+                <h4 style="color: var(--accent-green);">Metagri研究所コミュニティ</h4>
+                <p>農業×web3の最新情報、実践プロジェクトへの参加機会</p>
+                <a href="https://discord.gg/hyw3AkKa8e" target="_blank" class="button" style="margin-top: 10px;">
+                    👉 Discordコミュニティに参加
+                </a>
+            </div>
+
+            <div class="social-links">
+                <h4 style="color: var(--accent-green);">SNS</h4>
+                <a href="https://twitter.com/noujoujin" target="_blank">🐦 X (Twitter)</a>
+                <a href="https://note.com/noujoujin" target="_blank">📝 note</a>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #555;">
+                <p style="font-size: 18px; margin-bottom: 10px;">お疲れ様でした！</p>
+                <p>あなたの企画が、地域の未来を変える第一歩です。</p>
+                <p style="margin-top: 20px; opacity: 0.8;">Presented by 農情人 / Metagri研究所</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // パスワードのSHA-256ハッシュ（デフォルト: "oma2024"）
+        // 変更する場合は https://emn178.github.io/online-tools/sha256.html でハッシュを生成
+        const PASSWORD_HASH = '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92';
+
+        const AUTH_KEY = 'oma_authenticated';
+
+        // ページ読み込み時の認証チェック
+        window.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem(AUTH_KEY) === 'true') {
+                showMainContent();
+            }
+        });
+
+        // パスワード送信処理
+        document.getElementById('auth-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const password = document.getElementById('password-input').value;
+            const errorMessage = document.getElementById('error-message');
+
+            // SHA-256ハッシュ化
+            const hash = await sha256(password);
+
+            if (hash === PASSWORD_HASH) {
+                sessionStorage.setItem(AUTH_KEY, 'true');
+                showMainContent();
+            } else {
+                errorMessage.classList.add('show');
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-input').focus();
+            }
+        });
+
+        // ログアウト処理
+        document.getElementById('logout-button').addEventListener('click', () => {
+            if (confirm('ログアウトしますか？')) {
+                sessionStorage.removeItem(AUTH_KEY);
+                location.reload();
+            }
+        });
+
+        // メインコンテンツ表示
+        function showMainContent() {
+            document.getElementById('auth-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        // SHA-256ハッシュ関数
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+        }
+    </script>
+</body>
+</html>
