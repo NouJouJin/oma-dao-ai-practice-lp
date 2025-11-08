@@ -77,16 +77,16 @@ oma-dao-ai-practice-lp/
 ## 📚 コンテンツ構成
 
 1. **ヘッダー** - タイトル、日時、講義の目的
-2. **第1回の振り返り** - web3の基礎、成功事例・失敗事例
-3. **今日のゴール** - DAO設計書の作成と発表
-4. **参考事例** - Biwako DAO、川上牧場
+2. **今日のゴール** - DAO設計書の作成と発表（タイムライン付き）
+3. **第1回の振り返り** - web3の基礎、成功事例・失敗事例
+4. **参考事例** - Biwako DAO、川上牧場（詳細資料リンク付き）
 5. **実践ワークショップ**
    - 10人分の個別Google Docsテンプレートリンク
    - アクセス権申請の案内
    - AIツール推奨リスト
    - AIプロンプト例（基本版・段階的版）
-6. **発表・投票** - 発表の流れと投票方法
-7. **アンケート** - 講義の感想、成果物公開許可の確認
+6. **発表** - 発表の流れと発表内容
+7. **アンケート** - Airtable埋め込みフォーム、成果物公開許可の確認
 8. **フッター** - Metagri研究所情報、SNSリンク
 
 ## ✨ 主な機能
@@ -104,7 +104,7 @@ oma-dao-ai-practice-lp/
 2. 各テンプレートの共有設定で「リンクを知っている全員」または「特定のユーザー」を設定
 3. `index.html` のテーブル内のリンクを各テンプレートのURLに更新
 
-### 2. アンケート機能
+### 2. アンケート機能（Airtable埋め込み）
 
 講義終了後のフィードバック収集用アンケートセクション。
 
@@ -112,10 +112,12 @@ oma-dao-ai-practice-lp/
 - 理解度の変化（定量評価）
 - 成果物の公開許可確認
 - 公開時のニックネーム/名称の記入欄
+- Airtableフォームを直接ページ内に埋め込み
 
 **設定方法:**
-1. `SURVEY_GUIDE.md` を参照してGoogle Formsを作成
-2. 作成したフォームのURLを `index.html` のアンケートボタンに設定
+1. Airtableでアンケートフォームを作成
+2. 埋め込み用のiframeコードを取得
+3. `index.html` の990行目のiframe srcを更新
 
 ### 3. パスワード保護
 
@@ -142,9 +144,11 @@ oma-dao-ai-practice-lp/
 
 ### ステップ2: Google Docsテンプレートリンクの設定
 
+**2-1. 受講者用テンプレート（10人分）**
+
 1. Google Docsでテンプレートを10個作成（コピー機能を活用）
 2. 各テンプレートの共有設定を行う
-3. 各リンクを `index.html` のテーブルに設定
+3. 各リンクを `index.html` のテーブル（737行目〜）に設定
 
 ```html
 <a href="#" onclick="alert('Google Docsのリンク1を設定してください'); return false;">
@@ -156,20 +160,39 @@ oma-dao-ai-practice-lp/
 <a href="https://docs.google.com/document/d/あなたのドキュメントID/edit" target="_blank">
 ```
 
-### ステップ3: アンケートフォームの作成と設定
+**2-2. 参考事例の詳細資料リンク**
 
-1. `SURVEY_GUIDE.md` を参照してGoogle Formsを作成
-2. フォームのURLを `index.html` の989行目に設定
+1. Biwako DAOと川上牧場の詳細資料を準備
+2. `index.html` の685行目と709行目のリンクを更新
 
 ```html
-<a href="#" class="button button-large" onclick="alert('Google FormsのアンケートURLをここに設定してください'); return false;">
+<a href="#" class="button" onclick="alert('Biwako DAOの詳細資料リンクをここに設定してください'); return false;">
 ```
 
 ↓
 
 ```html
-<a href="https://forms.gle/あなたのフォームID" class="button button-large" target="_blank">
+<a href="https://docs.google.com/document/d/BiwakoDAO詳細資料ID/edit" target="_blank" class="button">
 ```
+
+### ステップ3: アンケートフォームの設定（Airtable）
+
+1. Airtableでアンケートフォームを作成
+2. フォームの共有設定から「埋め込み」を選択
+3. iframeコードをコピー
+4. `index.html` の990行目のiframe srcを更新
+
+```html
+<iframe class="airtable-embed" src="https://airtable.com/embed/applcqOMmwyE9fjtX/pag7tefz36UiQ7ZPB/form" ...>
+```
+
+↓
+
+```html
+<iframe class="airtable-embed" src="https://airtable.com/embed/あなたのアプリID/あなたのページID/form" ...>
+```
+
+※参考：`SURVEY_GUIDE.md` にGoogle Forms版の質問設計が記載されています（Airtableでも同様の質問を設定してください）
 
 ### ステップ4: パスワードの変更（推奨）
 
