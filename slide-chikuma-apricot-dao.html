@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>千曲市あんずDAO - 企画書スライド</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Yu Gothic', 'Meiryo', sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .slide {
+            width: 1920px;
+            height: 1080px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 60px 80px;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            gap: 40px;
+            transform: scale(0.5);
+            transform-origin: center;
+        }
+
+        @media (min-width: 1920px) {
+            .slide {
+                transform: scale(0.8);
+            }
+        }
+
+        /* ヘッダー */
+        .header {
+            text-align: center;
+            border-bottom: 4px solid #ff6b9d;
+            padding-bottom: 30px;
+        }
+
+        .dao-name {
+            font-size: 72px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .catchphrase {
+            font-size: 42px;
+            color: #555;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .location {
+            font-size: 32px;
+            color: #7f8c8d;
+            margin-top: 10px;
+        }
+
+        /* メインコンテンツ */
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .section-title {
+            font-size: 38px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ff6b9d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            font-size: 42px;
+        }
+
+        .item {
+            margin-bottom: 15px;
+            font-size: 26px;
+            line-height: 1.6;
+            color: #34495e;
+        }
+
+        .item strong {
+            color: #f5576c;
+            font-weight: 700;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .highlight-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .highlight-item {
+            font-size: 24px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .highlight-item:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .token-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 3px solid #ff6b9d;
+        }
+
+        .token-card h4 {
+            font-size: 26px;
+            color: #f5576c;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .token-card p {
+            font-size: 20px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        ul li:before {
+            content: "🌸";
+            position: absolute;
+            left: 0;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .challenge-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #e74c3c;
+            font-size: 24px;
+            color: #34495e;
+        }
+
+        .free-badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .activity-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #ff6b9d;
+        }
+
+        .activity-box h5 {
+            font-size: 28px;
+            color: #f5576c;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .activity-box ul li {
+            font-size: 22px;
+        }
+
+        .monetize-box {
+            background: #fff3e0;
+            padding: 25px;
+            border-radius: 10px;
+            border: 3px solid #ff9800;
+        }
+
+        .monetize-box h4 {
+            font-size: 30px;
+            color: #e65100;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .monetize-item {
+            font-size: 22px;
+            color: #555;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .monetize-item:before {
+            content: "💰";
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- ヘッダー -->
+        <div class="header">
+            <div class="dao-name">🌸 Chikuma Apricot DAO</div>
+            <div class="catchphrase">「あんずの未来を、みんなで育てる。」</div>
+            <div class="location">📍 長野県 千曲市</div>
+        </div>
+
+        <!-- メインコンテンツ -->
+        <div class="content">
+            <!-- 左カラム -->
+            <div>
+                <!-- 解決する課題 -->
+                <div class="section">
+                    <div class="section-title">
+                        <span class="icon">🎯</span>
+                        解決する地域課題
+                    </div>
+                    <div class="challenge-grid">
+                        <div class="challenge-item">📱 オンライン販路の弱さ（EC・SNSマーケ不足）</div>
+                        <div class="challenge-item">👨‍👩‍👧‍👦 20〜30代の認知度・関心の低さ</div>
+                        <div class="challenge-item">🎉 季節イベントの発信力不足</div>
+                    </div>
+                </div>
+
+                <!-- ターゲット & 参加条件 -->
+                <div class="section" style="margin-top: 20px;">
+                    <div class="section-title">
+                        <span class="icon">👥</span>
+                        ターゲット
+                        <span class="free-badge">無料参加</span>
+                    </div>
+                    <div class="item"><strong>メイン：</strong>20〜30代の都市部在住者（東京・神奈川・埼玉・千葉）</div>
+                    <div class="item"><strong>サブ：</strong>U/Iターン希望者、フリーランス・クリエイター、食品/デザイン/Web3学習者</div>
+                    <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                        <p style="font-size: 22px; color: #2e7d32; font-weight: bold;">💡 無料参加の理由: 若者の参加ハードルを下げ、関与者の母数を最大化。行政・企業との連携もしやすい。</p>
+                    </div>
+                </div>
+
+                <!-- トークノミクス -->
+                <div class="section" style="margin-top: 20px;">
+                    <div class="section-title">
+                        <span class="icon">🪙</span>
+                        トークノミクス
+                    </div>
+                    <div class="tokenomics-grid">
+                        <div class="token-card">
+                            <h4>🎫 Anzu Token</h4>
+                            <p><strong>獲得：</strong>ワークショップ参加、SNS投稿、試食レビュー、アイデア提案</p>
+                        </div>
+                        <div class="token-card">
+                            <h4>🏆 Apricot Badge</h4>
+                            <p><strong>特典：</strong>投票権、限定イベント参加、商品開発参画</p>
+                        </div>
+                    </div>
+                    <div class="token-card" style="margin-top: 15px;">
+                        <h4>✨ 利用方法</h4>
+                        <p>① 新商品の優先購入権</p>
+                        <p>② 商品開発ワークショップ参加資格UP</p>
+                        <p>③ 貢献度の可視化・バッジ昇格</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右カラム -->
+            <div>
+                <!-- コミュニティ活動 -->
+                <div class="section">
+                    <div class="section-title">
+                        <span class="icon">🤝</span>
+                        コミュニティ活動
+                    </div>
+                    <div class="activity-box">
+                        <h5>💻 オンライン</h5>
+                        <ul>
+                            <li class="item" style="font-size: 22px;">試食レビュー共有会</li>
+                            <li class="item" style="font-size: 22px;">SNSマーケPR素材づくり</li>
+                            <li class="item" style="font-size: 22px;">新商品アイデアブレスト</li>
+                        </ul>
+                    </div>
+                    <div class="activity-box">
+                        <h5>🏪 オフライン</h5>
+                        <ul>
+                            <li class="item" style="font-size: 22px;">収穫体験&フィールドワーク</li>
+                            <li class="item" style="font-size: 22px;">新商品開発ワークショップ</li>
+                            <li class="item" style="font-size: 22px;">あんず祭りDAOブース出店</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- マネタイズ戦略 -->
+                <div class="monetize-box" style="margin-top: 20px;">
+                    <h4>💰 マネタイズ戦略</h4>
+                    <div class="monetize-item">DAO限定ECで商品販売</div>
+                    <div class="monetize-item">サポーター会員（月額500〜1,000円）</div>
+                    <div class="monetize-item">企業・自治体との共創プロジェクト</div>
+                </div>
+
+                <!-- DAOだからこその意義 -->
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <div class="highlight-title">⭐ DAOだからこその意義</div>
+                    <div class="highlight-item">若者が透明な意思決定に参加</div>
+                    <div class="highlight-item">貢献がトークンで可視化</div>
+                    <div class="highlight-item">都市×地域の「常時コラボ」</div>
+                    <div class="highlight-item">データ蓄積で科学的ブランド改善</div>
+                    <div class="highlight-item">収益還元で自走的成長</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
