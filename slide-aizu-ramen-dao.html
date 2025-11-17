@@ -27,12 +27,13 @@
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 60px 80px;
+            padding: 40px 50px;
             display: grid;
             grid-template-rows: auto 1fr;
-            gap: 40px;
+            gap: 25px;
             transform: scale(0.5);
             transform-origin: center;
+            overflow: hidden;
         }
 
         @media (min-width: 1920px) {
@@ -44,15 +45,15 @@
         /* ヘッダー */
         .header {
             text-align: center;
-            border-bottom: 4px solid #ff6b6b;
-            padding-bottom: 30px;
+            border-bottom: 3px solid #ff6b6b;
+            padding-bottom: 15px;
         }
 
         .dao-name {
-            font-size: 72px;
+            font-size: 52px;
             font-weight: bold;
             color: #2c3e50;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -60,51 +61,51 @@
         }
 
         .catchphrase {
-            font-size: 42px;
+            font-size: 28px;
             color: #555;
             font-weight: 600;
             font-style: italic;
         }
 
         .location {
-            font-size: 32px;
+            font-size: 22px;
             color: #7f8c8d;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         /* メインコンテンツ */
         .content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 25px;
         }
 
         .section {
             background: #f8f9fa;
-            border-radius: 15px;
-            padding: 30px;
+            border-radius: 12px;
+            padding: 20px;
         }
 
         .section-title {
-            font-size: 38px;
+            font-size: 28px;
             font-weight: bold;
             color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #ff6b6b;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #ff6b6b;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .icon {
-            font-size: 42px;
+            font-size: 30px;
         }
 
         .item {
-            margin-bottom: 15px;
-            font-size: 26px;
-            line-height: 1.6;
+            margin-bottom: 10px;
+            font-size: 20px;
+            line-height: 1.5;
             color: #34495e;
         }
 
@@ -116,22 +117,22 @@
         .highlight-box {
             background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
             color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
         }
 
         .highlight-title {
-            font-size: 32px;
+            font-size: 26px;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-align: center;
         }
 
         .highlight-item {
-            font-size: 24px;
-            margin-bottom: 10px;
-            padding-left: 20px;
+            font-size: 19px;
+            margin-bottom: 7px;
+            padding-left: 18px;
             position: relative;
         }
 
@@ -145,28 +146,29 @@
         .tokenomics {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 15px;
+            gap: 12px;
+            margin-top: 10px;
         }
 
         .token-card {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            border: 3px solid #ff6b6b;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #ff6b6b;
         }
 
         .token-card h4 {
-            font-size: 28px;
+            font-size: 22px;
             color: #ff6b6b;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: bold;
         }
 
         .token-card p {
-            font-size: 20px;
+            font-size: 17px;
             color: #555;
-            line-height: 1.5;
+            line-height: 1.4;
+            margin-bottom: 5px;
         }
 
         ul {
@@ -175,9 +177,9 @@
         }
 
         ul li {
-            padding-left: 25px;
+            padding-left: 22px;
             position: relative;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         ul li:before {
@@ -214,7 +216,7 @@
                 </div>
 
                 <!-- ターゲット -->
-                <div class="section" style="margin-top: 20px;">
+                <div class="section" style="margin-top: 15px;">
                     <div class="section-title">
                         <span class="icon">👥</span>
                         ターゲット
@@ -224,7 +226,7 @@
                 </div>
 
                 <!-- トークノミクス -->
-                <div class="section" style="margin-top: 20px;">
+                <div class="section" style="margin-top: 15px;">
                     <div class="section-title">
                         <span class="icon">🪙</span>
                         トークノミクス
@@ -253,16 +255,16 @@
                         コミュニティ活動
                     </div>
                     <div class="item"><strong>💻 オンライン：</strong></div>
-                    <ul style="margin-bottom: 15px;">
-                        <li class="item" style="font-size: 22px;">応援キャンペーン企画・投票</li>
-                        <li class="item" style="font-size: 22px;">SNSでPR部活動</li>
-                        <li class="item" style="font-size: 22px;">ラーメン店紹介マップ共同編集</li>
+                    <ul style="margin-bottom: 10px;">
+                        <li class="item" style="font-size: 18px;">応援キャンペーン企画・投票</li>
+                        <li class="item" style="font-size: 18px;">SNSでPR部活動</li>
+                        <li class="item" style="font-size: 18px;">ラーメン店紹介マップ共同編集</li>
                     </ul>
                     <div class="item"><strong>🏪 オフライン：</strong></div>
                     <ul>
-                        <li class="item" style="font-size: 22px;">ラーメン店巡りスタンプラリー</li>
-                        <li class="item" style="font-size: 22px;">ラーメンフェス・試食会</li>
-                        <li class="item" style="font-size: 22px;">店舗・商店街コラボ企画</li>
+                        <li class="item" style="font-size: 18px;">ラーメン店巡りスタンプラリー</li>
+                        <li class="item" style="font-size: 18px;">ラーメンフェス・試食会</li>
+                        <li class="item" style="font-size: 18px;">店舗・商店街コラボ企画</li>
                     </ul>
                 </div>
 
