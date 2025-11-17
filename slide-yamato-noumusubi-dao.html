@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>やまと農結DAO - 企画書スライド</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Yu Gothic', 'Meiryo', sans-serif;
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .slide {
+            width: 1920px;
+            height: 1080px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 60px 80px;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            gap: 40px;
+            transform: scale(0.5);
+            transform-origin: center;
+        }
+
+        @media (min-width: 1920px) {
+            .slide {
+                transform: scale(0.8);
+            }
+        }
+
+        /* ヘッダー */
+        .header {
+            text-align: center;
+            border-bottom: 4px solid #56ab2f;
+            padding-bottom: 30px;
+        }
+
+        .dao-name {
+            font-size: 72px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #56ab2f, #7cb342);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .catchphrase {
+            font-size: 42px;
+            color: #555;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .location {
+            font-size: 32px;
+            color: #7f8c8d;
+            margin-top: 10px;
+        }
+
+        /* メインコンテンツ */
+        .content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+        }
+
+        .section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .section-title {
+            font-size: 38px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #56ab2f;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            font-size: 42px;
+        }
+
+        .item {
+            margin-bottom: 15px;
+            font-size: 26px;
+            line-height: 1.6;
+            color: #34495e;
+        }
+
+        .item strong {
+            color: #56ab2f;
+            font-weight: 700;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #56ab2f, #7cb342);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .highlight-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .highlight-item {
+            font-size: 24px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .highlight-item:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .tokenomics-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border: 3px solid #56ab2f;
+            margin-bottom: 20px;
+        }
+
+        .tokenomics-box h4 {
+            font-size: 30px;
+            color: #56ab2f;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .tokenomics-box p {
+            font-size: 22px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .token-examples {
+            background: #f0f7ed;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .token-examples p {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        ul li:before {
+            content: "🌾";
+            position: absolute;
+            left: 0;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .challenge-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #e74c3c;
+            font-size: 24px;
+            color: #34495e;
+        }
+
+        .target-box {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #ffc107;
+            margin-bottom: 15px;
+        }
+
+        .target-box strong {
+            color: #ff6f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- ヘッダー -->
+        <div class="header">
+            <div class="dao-name">🌾 やまと農結（のうむすび）DAO</div>
+            <div class="catchphrase">「ひと口から始まる、あなたと大和の『農』ものがたり。」</div>
+            <div class="location">📍 奈良県桜井市・宇陀市（榛原地区）</div>
+        </div>
+
+        <!-- メインコンテンツ -->
+        <div class="content">
+            <!-- 左カラム -->
+            <div>
+                <!-- 解決する課題 -->
+                <div class="section">
+                    <div class="section-title">
+                        <span class="icon">🎯</span>
+                        解決する社会課題
+                    </div>
+                    <div class="challenge-grid">
+                        <div class="challenge-item">🚜 耕作放棄地の増加</div>
+                        <div class="challenge-item">👨‍🌾 農家の減少と孤立</div>
+                        <div class="challenge-item">📢 特産品（米・そうめん等）の魅力発信力不足</div>
+                    </div>
+                </div>
+
+                <!-- ターゲット -->
+                <div class="section" style="margin-top: 20px;">
+                    <div class="section-title">
+                        <span class="icon">👥</span>
+                        ターゲット
+                    </div>
+                    <div class="target-box">
+                        <p><strong>メイン：</strong>「食」の背景に関心がある層、サステナビリティや地域貢献に興味があるが具体的な関わり方がわからない層</p>
+                    </div>
+                    <div class="target-box">
+                        <p><strong>サブ：</strong>二拠点居住・半農半Xに関心、DAOやWeb3という新しい仕組みに関心があるテクノロジー感度の高い層</p>
+                    </div>
+                </div>
+
+                <!-- トークノミクス -->
+                <div class="section" style="margin-top: 20px;">
+                    <div class="section-title">
+                        <span class="icon">🪙</span>
+                        トークノミクス設計
+                    </div>
+                    <div class="tokenomics-box">
+                        <h4>💰 FT: $MUSUBI（結び）</h4>
+                        <p><strong>💚 投機なし型</strong>（換金不可・譲渡不可）</p>
+                        <div class="token-examples">
+                            <p><strong>獲得例：</strong>クマ捕獲(500)、草刈り(10)、収穫(10)、企画参加(5)</p>
+                            <p><strong>利用例：</strong>ガバナンス投票権、農結チケットNFTと交換（10 $MUSUBI = 1チケット）</p>
+                        </div>
+                    </div>
+                    <div class="tokenomics-box">
+                        <h4>🎫 農結チケットNFT（ユーティリティ）</h4>
+                        <div class="token-examples">
+                            <p>古民家宿泊1泊: 10チケット</p>
+                            <p>みわそうめん: 1チケット</p>
+                            <p>米5kg: 5チケット</p>
+                            <p>ブルーベリー: 5チケット</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右カラム -->
+            <div>
+                <!-- NFT/SBT -->
+                <div class="section">
+                    <div class="section-title">
+                        <span class="icon">🏆</span>
+                        貢献証NFT/SBT
+                    </div>
+                    <div class="tokenomics-box" style="margin-bottom: 15px;">
+                        <h4>🌱 Level 1: 種まく人</h4>
+                        <p>初期参加者（SBT）</p>
+                    </div>
+                    <div class="tokenomics-box" style="margin-bottom: 15px;">
+                        <h4>💧 Level 2: 水守</h4>
+                        <p>農作業・企画貢献者</p>
+                    </div>
+                    <div class="tokenomics-box">
+                        <h4>🌾 Level 3: 穂積</h4>
+                        <p>プロジェクトリーダー</p>
+                    </div>
+                </div>
+
+                <!-- DAOだからこその意義 -->
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <div class="highlight-title">⭐ DAOだからこその意義</div>
+                    <div class="highlight-item">都市×農村を結ぶ「食農コモンズ」の実現</div>
+                    <div class="highlight-item">貢献の可視化と公平な報酬分配</div>
+                    <div class="highlight-item">耕作放棄地を共有資産として再生</div>
+                    <div class="highlight-item">地理的制約を超えた参加</div>
+                    <div class="highlight-item">活動記録の透明性と信頼性</div>
+                </div>
+
+                <!-- キーメッセージ -->
+                <div style="background: #fff8e1; padding: 25px; border-radius: 15px; margin-top: 20px; border: 3px solid #ffd54f;">
+                    <p style="font-size: 28px; text-align: center; color: #f57f17; font-weight: bold; line-height: 1.5;">
+                        「草刈り10回で古民家1泊」<br>
+                        労働が具体的な価値に変わる仕組み
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
