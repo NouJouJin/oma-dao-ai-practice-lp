@@ -27,12 +27,13 @@
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 60px 80px;
+            padding: 40px 50px;
             display: grid;
             grid-template-rows: auto 1fr;
-            gap: 40px;
+            gap: 20px;
             transform: scale(0.5);
             transform-origin: center;
+            overflow: hidden;
         }
 
         @media (min-width: 1920px) {
@@ -44,15 +45,15 @@
         /* ヘッダー */
         .header {
             text-align: center;
-            border-bottom: 4px solid #56ab2f;
-            padding-bottom: 30px;
+            border-bottom: 3px solid #56ab2f;
+            padding-bottom: 12px;
         }
 
         .dao-name {
-            font-size: 72px;
+            font-size: 50px;
             font-weight: bold;
             color: #2c3e50;
-            margin-bottom: 15px;
+            margin-bottom: 6px;
             background: linear-gradient(135deg, #56ab2f, #7cb342);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -60,51 +61,51 @@
         }
 
         .catchphrase {
-            font-size: 42px;
+            font-size: 26px;
             color: #555;
             font-weight: 600;
             font-style: italic;
         }
 
         .location {
-            font-size: 32px;
+            font-size: 20px;
             color: #7f8c8d;
-            margin-top: 10px;
+            margin-top: 4px;
         }
 
         /* メインコンテンツ */
         .content {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 40px;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 20px;
         }
 
         .section {
             background: #f8f9fa;
-            border-radius: 15px;
-            padding: 30px;
+            border-radius: 10px;
+            padding: 18px;
         }
 
         .section-title {
-            font-size: 38px;
+            font-size: 26px;
             font-weight: bold;
             color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #56ab2f;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #56ab2f;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
         }
 
         .icon {
-            font-size: 42px;
+            font-size: 28px;
         }
 
         .item {
-            margin-bottom: 15px;
-            font-size: 26px;
-            line-height: 1.6;
+            margin-bottom: 8px;
+            font-size: 18px;
+            line-height: 1.4;
             color: #34495e;
         }
 
@@ -116,22 +117,22 @@
         .highlight-box {
             background: linear-gradient(135deg, #56ab2f, #7cb342);
             color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 20px;
+            padding: 18px;
+            border-radius: 10px;
+            margin-top: 12px;
         }
 
         .highlight-title {
-            font-size: 32px;
+            font-size: 24px;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             text-align: center;
         }
 
         .highlight-item {
-            font-size: 24px;
-            margin-bottom: 10px;
-            padding-left: 20px;
+            font-size: 17px;
+            margin-bottom: 5px;
+            padding-left: 16px;
             position: relative;
         }
 
@@ -144,36 +145,36 @@
 
         .tokenomics-box {
             background: white;
-            padding: 25px;
-            border-radius: 10px;
-            border: 3px solid #56ab2f;
-            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #56ab2f;
+            margin-bottom: 12px;
         }
 
         .tokenomics-box h4 {
-            font-size: 30px;
+            font-size: 22px;
             color: #56ab2f;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             font-weight: bold;
         }
 
         .tokenomics-box p {
-            font-size: 22px;
+            font-size: 16px;
             color: #555;
-            line-height: 1.6;
-            margin-bottom: 10px;
+            line-height: 1.4;
+            margin-bottom: 5px;
         }
 
         .token-examples {
             background: #f0f7ed;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 6px;
         }
 
         .token-examples p {
-            font-size: 20px;
-            margin-bottom: 5px;
+            font-size: 15px;
+            margin-bottom: 3px;
         }
 
         ul {
@@ -182,9 +183,9 @@
         }
 
         ul li {
-            padding-left: 25px;
+            padding-left: 20px;
             position: relative;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
         ul li:before {
@@ -196,28 +197,70 @@
         .challenge-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 10px;
+            gap: 8px;
         }
 
         .challenge-item {
             background: white;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 5px solid #e74c3c;
-            font-size: 24px;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #e74c3c;
+            font-size: 18px;
             color: #34495e;
         }
 
         .target-box {
             background: #fff3cd;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 8px;
             border: 2px solid #ffc107;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+        }
+
+        .target-box p {
+            font-size: 16px;
+            margin: 0;
         }
 
         .target-box strong {
             color: #ff6f00;
+        }
+
+        .nft-mini {
+            background: white;
+            padding: 10px;
+            border-radius: 6px;
+            border: 2px solid #56ab2f;
+            margin-bottom: 8px;
+        }
+
+        .nft-mini h4 {
+            font-size: 18px;
+            color: #56ab2f;
+            margin-bottom: 3px;
+        }
+
+        .nft-mini p {
+            font-size: 15px;
+            color: #555;
+            margin: 0;
+        }
+
+        .key-message {
+            background: #fff8e1;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 12px;
+            border: 2px solid #ffd54f;
+        }
+
+        .key-message p {
+            font-size: 20px;
+            text-align: center;
+            color: #f57f17;
+            font-weight: bold;
+            line-height: 1.4;
+            margin: 0;
         }
     </style>
 </head>
@@ -248,21 +291,21 @@
                 </div>
 
                 <!-- ターゲット -->
-                <div class="section" style="margin-top: 20px;">
+                <div class="section" style="margin-top: 12px;">
                     <div class="section-title">
                         <span class="icon">👥</span>
                         ターゲット
                     </div>
                     <div class="target-box">
-                        <p><strong>メイン：</strong>「食」の背景に関心がある層、サステナビリティや地域貢献に興味があるが具体的な関わり方がわからない層</p>
+                        <p><strong>メイン：</strong>「食」の背景に関心、サステナビリティ・地域貢献に興味</p>
                     </div>
                     <div class="target-box">
-                        <p><strong>サブ：</strong>二拠点居住・半農半Xに関心、DAOやWeb3という新しい仕組みに関心があるテクノロジー感度の高い層</p>
+                        <p><strong>サブ：</strong>二拠点居住・半農半X、DAOやWeb3に関心</p>
                     </div>
                 </div>
 
                 <!-- トークノミクス -->
-                <div class="section" style="margin-top: 20px;">
+                <div class="section" style="margin-top: 12px;">
                     <div class="section-title">
                         <span class="icon">🪙</span>
                         トークノミクス設計
@@ -272,16 +315,14 @@
                         <p><strong>💚 投機なし型</strong>（換金不可・譲渡不可）</p>
                         <div class="token-examples">
                             <p><strong>獲得例：</strong>クマ捕獲(500)、草刈り(10)、収穫(10)、企画参加(5)</p>
-                            <p><strong>利用例：</strong>ガバナンス投票権、農結チケットNFTと交換（10 $MUSUBI = 1チケット）</p>
+                            <p><strong>利用：</strong>投票権、農結チケットNFTと交換（10 $MUSUBI = 1チケット）</p>
                         </div>
                     </div>
                     <div class="tokenomics-box">
                         <h4>🎫 農結チケットNFT（ユーティリティ）</h4>
                         <div class="token-examples">
-                            <p>古民家宿泊1泊: 10チケット</p>
-                            <p>みわそうめん: 1チケット</p>
-                            <p>米5kg: 5チケット</p>
-                            <p>ブルーベリー: 5チケット</p>
+                            <p>古民家宿泊1泊: 10チケット / みわそうめん: 1チケット</p>
+                            <p>米5kg: 5チケット / ブルーベリー: 5チケット</p>
                         </div>
                     </div>
                 </div>
@@ -295,22 +336,22 @@
                         <span class="icon">🏆</span>
                         貢献証NFT/SBT
                     </div>
-                    <div class="tokenomics-box" style="margin-bottom: 15px;">
+                    <div class="nft-mini">
                         <h4>🌱 Level 1: 種まく人</h4>
                         <p>初期参加者（SBT）</p>
                     </div>
-                    <div class="tokenomics-box" style="margin-bottom: 15px;">
+                    <div class="nft-mini">
                         <h4>💧 Level 2: 水守</h4>
                         <p>農作業・企画貢献者</p>
                     </div>
-                    <div class="tokenomics-box">
+                    <div class="nft-mini">
                         <h4>🌾 Level 3: 穂積</h4>
                         <p>プロジェクトリーダー</p>
                     </div>
                 </div>
 
                 <!-- DAOだからこその意義 -->
-                <div class="highlight-box" style="margin-top: 20px;">
+                <div class="highlight-box" style="margin-top: 12px;">
                     <div class="highlight-title">⭐ DAOだからこその意義</div>
                     <div class="highlight-item">都市×農村を結ぶ「食農コモンズ」の実現</div>
                     <div class="highlight-item">貢献の可視化と公平な報酬分配</div>
@@ -320,11 +361,8 @@
                 </div>
 
                 <!-- キーメッセージ -->
-                <div style="background: #fff8e1; padding: 25px; border-radius: 15px; margin-top: 20px; border: 3px solid #ffd54f;">
-                    <p style="font-size: 28px; text-align: center; color: #f57f17; font-weight: bold; line-height: 1.5;">
-                        「草刈り10回で古民家1泊」<br>
-                        労働が具体的な価値に変わる仕組み
-                    </p>
+                <div class="key-message">
+                    <p>「草刈り10回で古民家1泊」<br>労働が具体的な価値に変わる仕組み</p>
                 </div>
             </div>
         </div>
